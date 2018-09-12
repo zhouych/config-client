@@ -1,12 +1,3 @@
-#spring.application.name=demo
-
-#spring.cloud.config.profile=dev
-#spring.cloud.config.label=master
-#spring.cloud.config.uri=http://127.0.0.1:3000/config-svr/
-
-#server.port=3300
-#server.servlet.context-path=/${spring.application.name}
-
 spring:
   application:
     name: demo
@@ -14,18 +5,29 @@ spring:
     config:
       profile: dev
       label: master
-      uri: http://127.0.0.1:3000/config-svr/
-      #uri: http://CONFIG-SVR/config-svr
+      uri: http://127.0.0.1:3000/
+      #uri: http://CONFIG-SVR/
+    bus:
+      trace:
+        enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
     
 server:
-  port: 3300
+  port: 3301
+  # 没有必要使用以下配置
   # servlet:
   #   context-path: /${spring.application.name}
 
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8000/eureka/
+      # 使用Eureka Server的集群环境
+      defaultZone: http://peer1:8001/eureka/,http://peer2:8002/eureka/,http://peer3:8003/eureka/
+  # 没有必要使用以下配置
   # 涉及到项目配置有server.servlet.context-path属性的相关处理
   # instance:
   #   metadata-map:
