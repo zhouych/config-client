@@ -17,7 +17,7 @@ spring:
     password: guest
     
 server:
-  port: 3301
+  port: 3300
   # 没有必要使用以下配置
   # servlet:
   #   context-path: /${spring.application.name}
